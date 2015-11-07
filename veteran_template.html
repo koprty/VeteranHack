@@ -62,7 +62,7 @@ var map = null;
 <script>
 
 
-GetMap();
+//GetMap();
 
 /*
 
@@ -164,8 +164,15 @@ function care (data){
 
 
 }
-//console.log(getVData("https://raw.githubusercontent.com/va-data/va-resources/master/family-caregiver-support.json", care));
- //console.log(getVData("https://raw.githubusercontent.com/va-data/va-facilities/master/facilities.json", facilities))
+'''
+RUN THE BELOW COMMANDS TO PARSE FILE AND INSERT RESULTS INTO HTML FILE
+
+getVData("https://raw.githubusercontent.com/va-data/va-resources/master/homeless-assistance.json", care);
+getVData("https://raw.githubusercontent.com/va-data/va-resources/master/family-caregiver-support.json", care);
+getVData("https://raw.githubusercontent.com/va-data/va-facilities/master/facilities.json", facilities);
+
+'''
+
 
 //console.log(getVData("https://api.data.gov/gsa/fbopen/v0/opps?q=accounting&api_key=XcatBp9s9TBuL1VT047HE6yqxPxPIpIbuktyvrnj"), jobs);
 //console.log(getVData("https://api.data.gov/gsa/fbopen/v0/opps?q=accounting&api_key=XcatBp9s9TBuL1VT047HE6yqxPxPIpIbuktyvrnj"));
