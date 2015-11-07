@@ -2,38 +2,89 @@
 
 <head>
 <script src="http://code.jquery.com/jquery.min.js"></script>
+<script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+<script src="SilverLight.js"></script>
+<script>
+var bing_key = "blah4";
+var map = null;
+
+      function GetMap()
+      {  
+
+         map = new Microsoft.Maps.Map(document.getElementById("mapDiv"), {credentials: bing_key});
+
+      }
+      function SetLoc (lat, long){
+
+        map.setView({center:new Microsoft.Maps.Location(lat, long)});
+
+      }
+
+      function SetLocation()
+      {
+         // Parse the input string
+         var latLongArray = (document.getElementById("txtlatlong").value).split(",");
+
+         // Retrieve the latitude and longitude values- normalize the longitude value
+         var latVal = parseInt(latLongArray[0]);
+         var longVal = Microsoft.Maps.Location.normalizeLongitude(parseInt(latLongArray[1]));
+
+         // Set the map center
+         // 17 = really really close
+          Microsoft.Maps.registerModule("SLStreetsideModule", "scripts/SLStreetsideModule.js", { styleURLs: ["styles/SLStreetsideModule.css"] });
+            Microsoft.Maps.loadModule("SLStreetsideModule", { callback: function () {
+                slMap = new SLStreetsideModule(map);
+            } `
+            });
+         map.setView({center:new Microsoft.Maps.Location(latVal, longVal),zoom: 8 });
+
+      }
+      </script>
+
 </head>
 <body>
 
 
-
+ <div id='mapDiv' style="position:relative; width:600px; height:600px;"></div> 
+      Latitude, Longitude: <input id="txtlatlong" type="text" value="40, -120"/>
+      <input type="button" value="Set center location" onclick="SetLocation();"/>
 
 </body>
 
 
 
-
 <script>
 
-'''
+
+GetMap();
+
+/*
+
 
 https://raw.githubusercontent.com/va-data/va-resources/master/homeless-assistance.json
 https://raw.githubusercontent.com/va-data/va-facilities/master/facilities.json
 https://raw.githubusercontent.com/va-data/va-resources/master/family-caregiver-support.json
+https://api.data.gov/gsa/fbopen/v0/opps?q=accounting&api_key=XcatBp9s9TBuL1VT047HE6yqxPxPIpIbuktyvrnj
 
+*/
+var x = function getVData(url){
+  stuff = ""
+  data = ""
+  success = ""
+  x = $.ajax({
+    dataType: "json",
+    url: url,
+    data: data,
+    success: success
+  })
+  .done(function( data ) {
+    stuff = data["docs"]
 
-'''
-x = $.ajax({
-  dataType: "json",
-  url: "https://api.data.gov/gsa/fbopen/v0/opps?q=accounting&api_key=XcatBp9s9TBuL1VT047HE6yqxPxPIpIbuktyvrnj",
-  data: data,
-  success: success
-})
-.done(function( data ) {
-	console.log(data);
-	console.log(data["docs"])
+    });
+  return stuff;
+}
 
-	});
+print getVData("https://api.data.gov/gsa/fbopen/v0/opps?q=accounting&api_key=XcatBp9s9TBuL1VT047HE6yqxPxPIpIbuktyvrnj")
 
 //console.log(data);
 /*
