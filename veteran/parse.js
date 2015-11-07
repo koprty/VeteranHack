@@ -50,8 +50,6 @@ function getVData(url,parser){
 }
 
 function care (data){
-  console.log(data);
-  console.log("YUM");
   for (var i =0 ; i < data.length; i++){
     ele = data[i];
     d = document.createElement("tr");
