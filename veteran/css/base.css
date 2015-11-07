@@ -1,0 +1,9 @@
+table{
+	table-layout: fixed; 
+    word-wrap: break-word;
+    width: 88%;
+    margin: auto;
+}
+.wrapper{
+	padding:1em;
+}
