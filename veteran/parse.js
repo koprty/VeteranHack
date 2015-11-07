@@ -24,12 +24,20 @@ function facilities(data){
     description.innerHTML=ele["description"].replace(/<\/?[^>]+(>|$)/g, " ");;//replace(/<\/?[^>]+(>|$)/g, " ");
 
 
-    n = "ele ele" + i;
-    $(title).addClass(n).appendTo(d);
-    $(address).addClass(n).appendTo(d);
-    $(type).addClass(n).appendTo(d);
-    $(description).addClass(n).appendTo(d);    
-    $(d).addClass(n).appendTo("#info");
+    td = document.createElement("td");
+    $(title).appendTo(td);
+    $(td).appendTo(d);
+    td = document.createElement("td");
+    $(address).appendTo(td);
+    $(td).appendTo(d);
+    td = document.createElement("td");
+    $(type).appendTo(td);
+    $(td).appendTo(d);
+    td = document.createElement("td");
+    $(description).appendTo(td);    
+    $(td).appendTo(d);
+
+    $(d).addClass("ele").appendTo("#data_table");
 
   }
 
